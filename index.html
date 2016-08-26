@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-us" ng-app="app">
+    <head>
+        <title>AngularJS Previsão do Tempo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body ng-controller="MainController" >
+
+    <div class="loading" ng-hide="loadComplete">
+        <div class="sk-folding-cube">
+            <div class="sk-cube1 sk-cube"></div>
+            <div class="sk-cube2 sk-cube"></div>
+            <div class="sk-cube4 sk-cube"></div>
+            <div class="sk-cube3 sk-cube"></div>
+        </div>
+        <p>Loading...</p>
+    </div>
+
+    <div class="container" ng-class="weather">
+
+        <div class="card">
+            <div class="card-top" ng-class="weather">
+                <i class="weather" ng-class="weather"> <span>{{temp}}</span></i>
+                <h1>{{city}}</h1>
+            </div>
+            <div class="card-bottom">
+            </div>
+        </div>
+    </div>
+
+
+
+        <!-- load angular via CDN -->
+        <script src="https://code.angularjs.org/1.5.8/angular.min.js"></script>
+        <script src="https://code.angularjs.org/1.5.8/angular-route.min.js"></script>
+        <script src="https://code.angularjs.org/1.5.8/angular-resource.min.js"></script>
+        <script src="https://code.angularjs.org/1.5.8/angular-animate.min.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/services.js"></script>
+        <script src="js/controllers.js"></script>
+    </body>
+</html>
