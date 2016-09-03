@@ -1,0 +1,47 @@
+<div class="loading" ng-hide="loadComplete">
+    <div class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
+    <p>Loading...</p>
+    <div ng-if="error" class="error">
+        <p>Error!<br>
+            Verify the name of the city and try again!</p>
+    </div>
+</div>
+
+<div class="container" ng-class="weather">
+    <div class="card">
+        <div id="converter">
+            <span class="hint--top hint--rounded" aria-label="Get local forecast">
+                <a href="#/"><span class="fa fa-map-marker btn"></span></a>
+            </span>
+            <span class="hint--top hint--rounded" aria-label="Celsius">
+                <span class="btn" ng-class="{active: unit === 'c'}" ng-click="fahrenheitToC()">ºC</span>
+            </span>
+            <span class="hint--top hint--rounded" aria-label="Fahrenheit">
+                <span class="btn" ng-class="{active: unit === 'f'}" ng-click="celsiusToF()">ºF</span>
+            </span>
+        </div>
+        <form id="search" ng-submit="goCity()">
+            <input type="text" placeholder="City" ng-model="search">
+            <button type="submit" class="fa fa-search"></button>
+        </form>
+        <div class="card-top" ng-class="weather">
+            <i class="weather" ng-class="weather"></i><span id="temp">{{temp}}º</span>
+            <h1>{{city}}</h1>
+        </div>
+        <div class="card-bottom">
+            <ul>
+                <li ng-repeat="day in days">
+                    <small>{{day.date | date : "dd/MM"}}</small>
+                    <i class="weather" ng-class="day.weather"></i>
+                    <small>{{day.min}}º - {{day.max}}º</small>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
