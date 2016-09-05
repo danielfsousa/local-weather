@@ -13,6 +13,7 @@
 .container.clear { background: url('../img/clear.jpg'); }
 .container.clouds { background: url('../img/clouds.jpg'); }
 .container.atmosphere,
+.container.mist,
 .container.haze { background: url('../img/atmosphere.jpg'); }
 
 /**************************
@@ -45,6 +46,7 @@ i.weather.snow:before { content: '\f01b'; }
 i.weather.clear:before { content: "\f00d"; }
 i.weather.clouds:before { content: '\f013'; }
 i.weather.atmosphere:before,
+i.weather.mist:before,
 i.weather.haze:before { content: '\f014'; }
 
 /**************************
@@ -57,6 +59,7 @@ i.weather.haze:before { content: '\f014'; }
 .card-top.clear { background: #f2b24e; }
 .card-top.clouds { background: #105785; }
 .card-top.atmosphere,
+.card-top.mist,
 .card-top.haze { background: #a8a7a9; }
 
 .card-bottom i.thunderstorm { color: #191f38; }
@@ -66,6 +69,7 @@ i.weather.haze:before { content: '\f014'; }
 .card-bottom i.clear { color: #f2b24e; }
 .card-bottom i.clouds { color: #105785; }
 .card-bottom i.atmosphere,
+.card-bottom i.mist,
 .card-bottom i.haze { color: #a8a7a9; }
 
 /**************************
@@ -163,10 +167,10 @@ body {
 #search {
     z-index: 1;
     width: 320px;
-    position: relative;
-    top: 50px;
+    position: absolute;
+    top: 15px;
+    left: 20px;
     text-align: left;
-    margin-left: 20px;
     font-size: 17px;
 }
 
@@ -229,12 +233,12 @@ body {
 
 #converter {
     z-index: 1;
-    position: relative;
+    position: absolute;
     width: 82px;
-    top: 55px;
+    top: 18px;
+    right: 10px;
     text-align: right;
     float: right;
-    margin-right: 20px;
     cursor: pointer;
     font-size: 17px;
 }
@@ -394,69 +398,69 @@ h1 {
 /**************************
     MEDIA QUERIES
 ***************************/
-@media only screen and (max-width: 735px) {
+@media only screen and (max-width: 480px) {
+
+    .card-top {
+        height: 98vw;
+        line-height: 100vw;
+    }
+
     .card-bottom ul {
         padding-left: 20px;
         padding-right: 20px;
     }
 
+    #temp,
     i.weather {
-        font-size: 100px;
+        font-size: 25vw;
     }
 
-    #temp {
-        font-size: 100px;
-        margin-left: 25px;
+    h1 {
+        bottom: 80vw;
+        font-size: 7vw;
     }
 
     #search {
-        width: 250px;
+        width: 55vw;
     }
 
     #search input {
-        width: 160px;
+        width: 32vw;
     }
 
     .card-bottom li:last-child,
     .card-bottom li:nth-last-child(2){
         display: none;
     }
+
+    .card-bottom li {
+        font-size: 4.2vw;
+    }
+
+    .card-bottom li i {
+        font-size: 11vw;
+    }
 }
 
 @media only screen and (max-height: 414px) {
 
     .card-top {
-        height: 220px;
-        line-height: 400px;
-        width: 900px;
-        max-width: 90vw;
-        opacity: 0.9;
-        background-color: white;
-        border-top-left-radius: 4px;
-        border-top-right-radius: 4px;
-        box-shadow: 0 5px 22px -7px rgba(0,0,0,0.75);
-        transition: all .3s ease-in-out;
+        height: 35vw;
+        line-height: 38vw;
     }
 
+    #temp,
     i.weather {
-        font-size: 100px;
+        font-size: 12vw;
     }
 
-    #temp {
-        font-size: 100px;
-        margin-left: 25px;
+    h1 {
+        bottom: 33vw;
+        font-size: 3.3vw;
     }
 
     .card-bottom {
-        opacity: 0.75;
         height: 100px;
-        width: 900px;
-        max-width: 90vw;
-        background-color: white;
-        border-bottom-left-radius: 4px;
-        border-bottom-right-radius: 4px;
-        box-shadow: 0 5px 22px -7px rgba(0,0,0,0.80);
-        transition: all .3s ease-in-out;
     }
 
     .card-bottom ul {
@@ -464,10 +468,6 @@ h1 {
     }
 
     .card-bottom li {
-        display: inline-block;
-        float: left;
-        color: #768083;
-        list-style: none;
         font-size: 15px;
     }
 

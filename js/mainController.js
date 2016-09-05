@@ -1,7 +1,35 @@
 // =================
 //   CONTROLLERS
 // =================
+
+//TODO: add SSL to support html geolocation
+//TODO: join and minify files
+
 app.controller('MainController', ['$scope', '$location', 'geolocation', 'weather', 'ip2coords', 'util', function ($scope, $location, geolocation, weather, ip2coords, util) {
+
+    function loadImages() {
+        var first = new Image();
+        var img1 = new Image();
+        var img2 = new Image();
+        var img3 = new Image();
+        var img4 = new Image();
+        var img5 = new Image();
+        var img6 = new Image();
+        var img7 = new Image();
+
+        first.src = 'img/' + $scope.weather + '.jpg';
+
+        $scope.loadComplete = true;
+
+        img1.src = 'img/clear.jpg';
+        img2.src = 'img/clouds.jpg';
+        img4.src = 'img/rain.jpg';
+        img3.src = 'img/thunderstorm.jpg';
+        img5.src = 'img/snow.jpg';
+        img6.src = 'img/drizzle.jpg';
+        img7.src = 'img/atmosphere.jpg';
+
+    }
 
     function renderCurrentWeatherByCoords(data) {
         weather.weekForecast(data.list[0].name).$promise.then(renderWeekForecast, error);
@@ -38,7 +66,9 @@ app.controller('MainController', ['$scope', '$location', 'geolocation', 'weather
                 weather: obj.weather[0].main.toLowerCase()
             });
         });
-        $scope.loadComplete = true;
+
+        loadImages();
+
     }
 
     function error(err) {
@@ -53,6 +83,10 @@ app.controller('MainController', ['$scope', '$location', 'geolocation', 'weather
     $scope.celsiusToF = function () {
         if ($scope.unit === 'c') {
             $scope.temp = Math.round(($scope.temp * (9 / 5)) + 32);
+            $scope.days.forEach(function (day) {
+                day.min = Math.round((day.min * (9 / 5)) + 32);
+                day.max = Math.round((day.max * (9 / 5)) + 32);
+            });
             $scope.unit = 'f';
             util.setUnit('f');
         }
@@ -61,6 +95,10 @@ app.controller('MainController', ['$scope', '$location', 'geolocation', 'weather
     $scope.fahrenheitToC = function () {
         if ($scope.unit === 'f') {
             $scope.temp = Math.round(($scope.temp - 32) * (5 / 9));
+            $scope.days.forEach(function (day) {
+                day.min = Math.round((day.min - 32) * (5 / 9));
+                day.max = Math.round((day.max - 32) * (5 / 9));
+            });
             $scope.unit = 'c';
             util.setUnit('c');
         }

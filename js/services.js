@@ -63,9 +63,9 @@ app.factory("geolocation", ['$q', '$window', '$rootScope', function ($q, $window
     }
 }]);
 
-app.factory('util', function () {
+app.factory('util', ['$cookies', function ($cookies) {
 
-    var unit = 'c';
+    var cookie = $cookies.get('unit');
 
     return {
         removeAccentuated: function (str) {
@@ -86,13 +86,18 @@ app.factory('util', function () {
             return str;
         },
         getUnit: function () {
-            return unit;
+            if(!cookie) {
+                $cookies.put('unit', 'c');
+                cookie = 'c';
+            }
+            return cookie;
         },
         setUnit: function (u) {
-            unit = u;
+            $cookies.put('unit', u);
+            cookie = u;
         }
 
     }
-});
+}]);
 
 

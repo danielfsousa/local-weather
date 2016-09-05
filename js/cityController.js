@@ -35,6 +35,7 @@ app.controller('CityController', ['$scope', '$routeParams', '$interval', '$locat
                 weather: obj.weather[0].main.toLowerCase()
             });
         });
+
         $scope.loadComplete = true;
     }
 
@@ -50,6 +51,10 @@ app.controller('CityController', ['$scope', '$routeParams', '$interval', '$locat
     $scope.celsiusToF = function () {
         if ($scope.unit === 'c') {
             $scope.temp = Math.round(($scope.temp * (9 / 5)) + 32);
+            $scope.days.forEach(function (day) {
+                day.min = Math.round((day.min * (9 / 5)) + 32);
+                day.max = Math.round((day.max * (9 / 5)) + 32);
+            });
             $scope.unit = 'f';
             util.setUnit('f');
         }
@@ -58,6 +63,10 @@ app.controller('CityController', ['$scope', '$routeParams', '$interval', '$locat
     $scope.fahrenheitToC = function () {
         if ($scope.unit === 'f') {
             $scope.temp = Math.round(($scope.temp - 32) * (5 / 9));
+            $scope.days.forEach(function (day) {
+                day.min = Math.round((day.min - 32) * (5 / 9));
+                day.max = Math.round((day.max - 32) * (5 / 9));
+            });
             $scope.unit = 'c';
             util.setUnit('c');
         }
