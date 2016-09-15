@@ -43,8 +43,8 @@ app.controller('CityController', ['$scope', '$routeParams', '$interval', '$locat
         console.log("Your Location could not be determined." + err);
         $scope.error = true;
         $interval(function () {
-            $scope.error = false;
             $location.path('/');
+            $scope.error = false;
         }, 3000);
     }
 

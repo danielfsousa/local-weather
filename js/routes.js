@@ -1,4 +1,4 @@
-app.config(function($routeProvider) {
+app.config(['$routeProvider', function($routeProvider) {
 
     $routeProvider
 
@@ -15,4 +15,4 @@ app.config(function($routeProvider) {
     .otherwise({redirectTo: '/'});
 
 
-});
+}]);

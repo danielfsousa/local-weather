@@ -17,7 +17,9 @@ app.controller('MainController', ['$scope', '$location', 'geolocation', 'weather
         var img6 = new Image();
         var img7 = new Image();
 
-        first.src = 'img/' + $scope.weather + '.jpg';
+        var nameWeather = ($scope.weather === 'haze' || $scope.weather === 'mist') ? 'atmosphere' : $scope.weather;
+
+        first.src = 'img/' + nameWeather + '.jpg';
 
         $scope.loadComplete = true;
 
